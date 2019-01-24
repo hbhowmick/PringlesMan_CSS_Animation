@@ -1,0 +1,174 @@
+@import 'eyes.css';
+
+/* below style will overwrite what we have in eyes.css because the import comes before this style */
+/* p::first-letter {
+  color: red;
+  font-size: 500%;
+} */
+
+/* testing absolute to relative positioning */
+.box {
+  padding-left: 300px;
+  margin-left: 200px;
+}
+
+@keyframes moveLeftStache {
+  0% {
+    transform: rotate(-60deg);
+  }
+  25% {
+    transform: rotate(-40deg);
+  }
+  50% {
+    transform: rotate(-60deg);
+  }
+  75% {
+    transform: rotate(-40deg);
+  }
+  100% {
+    transform: rotate(-60deg);
+  }
+}
+
+@keyframes moveRightStache {
+  0% {
+    transform: rotate(60deg);
+  }
+  25% {
+    transform: rotate(40deg);
+  }
+  50% {
+    transform: rotate(60deg);
+  }
+  75% {
+    transform: rotate(40deg);
+  }
+  100% {
+    transform: rotate(60deg);
+  }
+}
+
+@keyframes changeColor {
+  from {
+    color: red;
+  }
+  to {
+    color: steelblue;
+  }
+}
+
+@keyframes moveSquare {
+  0% {
+    position: absolute;
+    top: 45px;
+    left: 55px;
+  }
+  25% {
+    position: absolute;
+    top: 45px;
+    left: 350px;
+  }
+  50% {
+    position: absolute;
+    top: 45px;
+    left: 55px;
+  }
+  75% {
+    position: absolute;
+    top: 45px;
+    left: 350px;
+  }
+  100% {
+    position: absolute;
+    top: 45px;
+    left: 55px;
+  }
+}
+
+/* During */
+.moustache {
+  height: 180px;
+  width: 180px;
+  color: steelblue;
+  /*currentColor uses color attribute value */
+  /* background-color: currentColor; */
+  position: absolute;
+  top: 45px;
+  left: 55px;
+  border-radius: 50%;
+  /* animations require name and duration */
+  /* animation-name: moveSquare, changeColor;
+  animation-duration: 5s;
+  animation-iteration-count:infinite; */
+
+  /* x-offset, y-offset, spread, blur, color */
+  box-shadow:
+    150px 240px 0 0 currentColor,
+    300px 240px 0 0 currentColor;
+}
+
+.moustache::before {
+  height: 180px;
+  width: 180px;
+  position: absolute;
+  top: 90px;
+  left: 60px;
+  /* background-color: red; */
+  content: "";
+  border-bottom: 150px solid currentColor;
+  /* top-left, top-right, bot-right, bot-left */
+  border-radius: 0 0 0 100%;
+  transform: rotate(-60deg);
+  transform-origin: right 250px;
+  animation-name: moveLeftStache;
+  animation-duration: 3s;
+}
+
+.moustache::after {
+  height: 180px;
+  width: 180px;
+  position: absolute;
+  top: 90px;
+  left: 390px;
+  /* background-color: red; */
+  content: "";
+  border-bottom: 150px solid currentColor;
+  /* top-left, top-right, bot-right, bot-left */
+  border-radius: 0 0 100% 0;
+  transform: rotate(60deg);
+  transform-origin: left 250px;
+  animation-name: moveRightStache;
+  animation-duration: 3s;
+}
+
+
+/****************************
+
+For devices between 500px and 800px
+
+****************************/
+
+
+@media only screen and (min-width: 500px) and (max-width: 800px) {
+  p {
+    font-size: 300%;
+    font-weight: bold;
+  }
+}
+
+
+/****************************
+
+Adjusting text when printing
+
+****************************/
+
+
+@media only print and (min-width: 1px) {
+  p {
+    color: red;
+    font-size: 200%;
+    font-style: italic;
+    font-family: fantasy;
+  }
+}
